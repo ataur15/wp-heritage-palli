@@ -127,8 +127,30 @@ function heritage_palli_widgets_init() {
 			'name'          => esc_html__( 'Sidebar', 'heritage-palli' ),
 			'id'            => 'sidebar-1',
 			'description'   => esc_html__( 'Add widgets here.', 'heritage-palli' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Footer Nav', 'heritage-palli' ),
+			'id'            => 'footer-nav',
+			'description'   => esc_html__( 'Add widgets here.', 'heritage-palli' ),
+			'before_widget' => '<div id="%1$s" class="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-4 text-center md:text-left">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h2 class="widget-title">',
+			'after_title'   => '</h2>',
+		)
+	);
+	register_sidebar(
+		array(
+			'name'          => esc_html__( 'Copyright', 'heritage-palli' ),
+			'id'            => 'copyright',
+			'description'   => esc_html__( 'Add widgets here.', 'heritage-palli' ),
+			'before_widget' => '<div id="%1$s" class="copyright">',
+			'after_widget'  => '</div>',
 			'before_title'  => '<h2 class="widget-title">',
 			'after_title'   => '</h2>',
 		)
@@ -140,23 +162,20 @@ add_action( 'widgets_init', 'heritage_palli_widgets_init' );
  * Enqueue scripts and styles.
  */
 function heritage_palli_scripts() {
-	// unicons
+	// Tailwind
+	wp_enqueue_style( 'tailwind', 'https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css' );
+	// Unicons
 	wp_enqueue_style( 'unicons', 'https://unicons.iconscout.com/release/v4.0.0/css/line.css' );
-	// Tiny Slider CSS
-	wp_enqueue_style( 'tiny-slider', 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css' );
 	// Responsive Menu CSS
 	wp_enqueue_style( 'heritage-palli-meanmenu', get_template_directory_uri() . '/assets/css/meanmenu.css', array(), _S_VERSION );
 	// Style sheet
 	wp_enqueue_style( 'heritage-palli-style', get_stylesheet_uri(), array(), _S_VERSION );
 	// Custom CSS
-	wp_enqueue_style( 'heritage-palli-custom', get_template_directory_uri() . '/assets/css/custom.css', array(), _S_VERSION );
+	wp_enqueue_style( 'heritage-palli-custom', get_template_directory_uri() . '/assets/css/custom.css', array(), time() );
 
 	// Mobile Menu JS
     wp_enqueue_script( 'heritage-palli-jquery.meanmenu', get_template_directory_uri() . '/assets/js/jquery.meanmenu.min.js', array( 'jquery' ), _S_VERSION, true );
-	// Tiny Slider JS
-    wp_enqueue_script( 'tiny-slider', 'https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js', null, _S_VERSION, true);
     // Main JS
-    wp_enqueue_script( 'slider-js', get_template_directory_uri() . '/assets/js/slider.js', null, _S_VERSION, true );
     wp_enqueue_script( 'heritage-palli-main-js', get_template_directory_uri() . '/assets/js/main.js', array( 'jquery' ), _S_VERSION, true );
 
 
