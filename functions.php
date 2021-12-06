@@ -100,6 +100,8 @@ if ( ! function_exists( 'heritage_palli_setup' ) ) :
 				'flex-height' => true,
 			)
 		);
+
+
 	}
 endif;
 add_action( 'after_setup_theme', 'heritage_palli_setup' );
@@ -209,14 +211,6 @@ add_filter("get_product_search_form", "heritage_palli_search_form");
 
 
 /**
- * Custom hooks
- */
-if ( class_exists( 'WooCommerce' ) ) {
-	require 'woocommerce/woocommerce-template-hooks.php';
-	require 'woocommerce/woocommerce-template-functions.php';
-}
-
-/**
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';
@@ -241,4 +235,20 @@ require get_template_directory() . '/inc/customizer.php';
  */
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
+}
+
+/**
+ * Custom Woocommerce
+ */
+
+// Custom hooks
+if ( class_exists( 'WooCommerce' ) ) {
+	require 'woocommerce/woocommerce-template-hooks.php';
+	require 'woocommerce/woocommerce-template-functions.php';
+}
+
+// single page
+if ( class_exists( 'WooCommerce' ) ) {
+	remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_title', 5);
+	add_action('woocommerce_single_product_summary', 'woocommerce_template_single_title', 6);
 }
