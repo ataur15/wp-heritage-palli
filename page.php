@@ -13,9 +13,8 @@
  */
 
 get_header();
+get_sidebar();
 ?>
-	<?php get_sidebar();?>
-
 	<div class="main-right-sidebar">
 		<div id="primary" class="site-main">
 			<?php

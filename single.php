@@ -8,15 +8,19 @@
  */
 
 get_header();
+get_sidebar();
 ?>
-	<?php get_sidebar();?>
 	<div class="main-right-sidebar">
 		<div id="primary" class="site-main">
 			<?php
 			while ( have_posts() ) :
 				the_post();
 
-				get_template_part( 'template-parts/content', get_post_type() );
+				if ( class_exists( 'WooCommerce' ) ) {
+					get_template_part( 'template-parts/product', get_post_type() );
+				} else {
+					get_template_part( 'template-parts/content', get_post_type() );
+				}
 
 				the_post_navigation(
 					array(

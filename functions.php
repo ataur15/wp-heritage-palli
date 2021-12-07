@@ -206,9 +206,12 @@ FORM;
     return $newform;
 }
 
-
 add_filter("get_product_search_form", "heritage_palli_search_form");
 
+/**
+ * tgm
+ */
+require get_template_directory(). '/lib/tgm.php';
 
 /**
  * Implement the Custom Header feature.
